@@ -31,18 +31,18 @@ android {
         versionName = "1.0"
     }
     signingConfigs {
-        release {
-              if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
-                  storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
-                  storePassword System.getenv()["CM_KEYSTORE_PASSWORD"]
-                  keyAlias System.getenv()["CM_KEY_ALIAS"]
-                  keyPassword System.getenv()["CM_KEY_PASSWORD"]
-              } else {
-                  keyAlias keystoreProperties['keyAlias']
-                  keyPassword keystoreProperties['keyPassword']
-                  storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-                  storePassword keystoreProperties['storePassword']
-                }
+        create("release") {
+            if (System.getenv()["CI"] == "true") {
+                storeFile = file(System.getenv()["CM_KEYSTORE_PATH"])
+                storePassword = System.getenv()["CM_KEYSTORE_PASSWORD"]
+                keyAlias = System.getenv()["CM_KEY_ALIAS"]
+                keyPassword = System.getenv()["CM_KEY_PASSWORD"]
+            } else {
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+                storeFile = keystoreProperties["storeFile"] as File?
+                storePassword = keystoreProperties["storePassword"] as String
+            }
         }
     }
     buildFeatures {
@@ -57,11 +57,8 @@ android {
         }
     }
     buildTypes {
-        release {
-            signingConfig signingConfigs.release
-        }
-
         getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
         }
     }
