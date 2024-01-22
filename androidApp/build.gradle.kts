@@ -31,7 +31,7 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
-    }
+        
       signingConfigs {
           release {
               if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
@@ -47,6 +47,11 @@ android {
               }
           }
       }
+    buildTypes {
+     release {
+              signingConfig signingConfigs.release
+          }
+    }
     buildFeatures {
         compose = true
     }
@@ -58,10 +63,6 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    buildTypes {
-     release {
-              signingConfig signingConfigs.release
-          }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
