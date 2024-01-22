@@ -31,7 +31,7 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
-        
+    }
       signingConfigs {
           release {
               if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
@@ -51,7 +51,6 @@ android {
      release {
               signingConfig signingConfigs.release
           }
-    }
     buildFeatures {
         compose = true
     }
