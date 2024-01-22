@@ -4,11 +4,11 @@ plugins {
 }
 
 // // used only for local testing
-// def keystoreProperties = new Properties()
-// def keystorePropertiesFile = rootProject.file('key.properties')
-// if (keystorePropertiesFile.exists()) {
-//     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-// }
+val keystoreProperties = new Properties()
+val keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
 
 // // get version code from the specified property argument `-PversionCode` during the build call
 // def getMyVersionCode = { ->
