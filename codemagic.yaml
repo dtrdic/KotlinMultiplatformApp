@@ -4,9 +4,9 @@ workflows:
     max_build_duration: 120
     environment:
       android_signing:
-        - keystore_reference
+        - testKeystore
       groups:
-        - google_play
+        - google_credentials3
       vars:
         PACKAGE_NAME: "io.codemagic.dtrdic17"
         GOOGLE_PLAY_TRACK: alpha
