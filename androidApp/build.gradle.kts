@@ -3,6 +3,23 @@ plugins {
     kotlin("android")
 }
 
+// used only for local testing
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+// get version code from the specified property argument `-PversionCode` during the build call
+def getMyVersionCode = { ->
+    return project.hasProperty('versionCode') ? versionCode.toInteger() : -1
+}
+
+// get version name from the specified property argument `-PversionName` during the build call
+def getMyVersionName = { ->
+    return project.hasProperty('versionName') ? versionName : "1.0"
+}
+
 android {
     namespace = "io.codemagic.dtrdic17"
     compileSdk = 33
@@ -14,7 +31,7 @@ android {
         versionName = "1.0"
     }
     signingConfigs {
-          release {
+        release {
               if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
                   storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
                   storePassword System.getenv()["CM_KEYSTORE_PASSWORD"]
@@ -25,9 +42,9 @@ android {
                   keyPassword keystoreProperties['keyPassword']
                   storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
                   storePassword keystoreProperties['storePassword']
-              }
-          }
-      }
+                }
+        }
+    }
     buildFeatures {
         compose = true
     }
