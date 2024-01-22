@@ -3,22 +3,22 @@ plugins {
     kotlin("android")
 }
 
-// used only for local testing
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
+// // used only for local testing
+// def keystoreProperties = new Properties()
+// def keystorePropertiesFile = rootProject.file('key.properties')
+// if (keystorePropertiesFile.exists()) {
+//     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+// }
 
-// get version code from the specified property argument `-PversionCode` during the build call
-def getMyVersionCode = { ->
-    return project.hasProperty('versionCode') ? versionCode.toInteger() : -1
-}
+// // get version code from the specified property argument `-PversionCode` during the build call
+// def getMyVersionCode = { ->
+//     return project.hasProperty('versionCode') ? versionCode.toInteger() : -1
+// }
 
-// get version name from the specified property argument `-PversionName` during the build call
-def getMyVersionName = { ->
-    return project.hasProperty('versionName') ? versionName : "1.0"
-}
+// // get version name from the specified property argument `-PversionName` during the build call
+// def getMyVersionName = { ->
+//     return project.hasProperty('versionName') ? versionName : "1.0"
+// }
 
 android {
     namespace = "io.codemagic.dtrdic17"
