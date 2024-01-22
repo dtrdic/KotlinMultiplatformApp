@@ -13,7 +13,7 @@ workflows:
     scripts:
       - name: Build Android release
         script: | 
-          cd $CM_BUILD_DIR/androidApp
+          cd androidApp
           ./gradlew bundleRelease \
             -PversionCode=$BUILD_NUMBER \
             -PversionName=1.0.$BUILD_NUMBER
