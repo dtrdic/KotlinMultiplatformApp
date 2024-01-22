@@ -4,10 +4,10 @@ plugins {
 }
 
 android {
-    namespace = "io.codemagic.dtrdic17.android"
+    namespace = "io.codemagic.dtrdic17"
     compileSdk = 33
     defaultConfig {
-        applicationId = "io.codemagic.dtrdic17.android"
+        applicationId = "io.codemagic.dtrdic17"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
