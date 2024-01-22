@@ -50,7 +50,7 @@ android {
       }
     buildTypes {
      release {
-              signingConfig signingConfigs.release
+              signingConfig = signingConfigs.release
           }
     buildFeatures {
         compose = true
