@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    id("io.codemagic.dtrdic17")
     kotlin("android")
 }
 
