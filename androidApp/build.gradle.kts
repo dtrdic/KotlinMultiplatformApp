@@ -3,24 +3,8 @@ plugins {
     kotlin("android")
 }
 
-// // used only for local testing
-// val keystoreProperties = Properties()
-// val keystorePropertiesFile = rootProject.file("key.properties")
+   val latestGooglePlayBuildNumber = Integer.valueOf(System.env.LATEST_GOOGLE_PLAY_BUILD_NUMBER ?: System.env.BUILD_NUMBER ?: 0)
 
-// if (keystorePropertiesFile.exists()) {
-//     keystoreProperties.load(keystorePropertiesFile.inputStream())
-// }
-
-
-// // get version code from the specified property argument `-PversionCode` during the build call
-// def getMyVersionCode = { ->
-//     return project.hasProperty('versionCode') ? versionCode.toInteger() : -1
-// }
-
-// // get version name from the specified property argument `-PversionName` during the build call
-// def getMyVersionName = { ->
-//     return project.hasProperty('versionName') ? versionName : "1.0"
-// }
 
 android {
     namespace = "io.codemagic.dtrdic17"
@@ -29,8 +13,8 @@ android {
         applicationId = "io.codemagic.dtrdic17"
         minSdk = 24
         targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = latestGooglePlayBuildNumber + 1
+        versionName = "1.0.${latestGooglePlayBuildNumber + 1}"
     }
       signingConfigs {
          create("release") {
