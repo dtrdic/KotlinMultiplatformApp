@@ -47,6 +47,7 @@ workflows:
       vars:
         APP_STORE_APPLE_ID: 6477873359
         XCODE_WORKSPACE: "iosApp.xcworkspace"
+        XCODE_PROJECT: "iosApp.xcproject"
         XCODE_SCHEME: "iosApp"
     scripts:
       - name: Cocoapods installation
@@ -65,7 +66,7 @@ workflows:
         script: | 
           cd $CM_BUILD_DIR/iosApp
           xcode-project build-ipa \
-            --workspace "$XCODE_WORKSPACE" \
+            --project "$XCODE_PROJECT" \
             --scheme "$XCODE_SCHEME" \
             --archive-flags="-destination 'generic/platform=iOS'"
     artifacts:
