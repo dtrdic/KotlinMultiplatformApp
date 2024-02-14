@@ -45,7 +45,7 @@ workflows:
         distribution_type: app_store
         bundle_identifier: io.codemagic.dtrdic17
       vars:
-        APP_STORE_APPLE_ID: 6477870575
+        APP_STORE_APPLE_ID: 6477873359
         XCODE_WORKSPACE: "iosApp.xcworkspace"
         XCODE_SCHEME: "iosApp"
     scripts:
