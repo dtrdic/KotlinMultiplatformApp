@@ -2,7 +2,12 @@ plugins {
     id("com.android.application")
     kotlin("android")
 }
-
+val keystoreProperties =
+    Properties().apply {
+        var file = File("key.properties")
+        if (file.exists()) load(file.reader())
+    }
+    
 val latestGooglePlayBuildNumber = Integer.valueOf(System.getenv("LATEST_GOOGLE_PLAY_BUILD_NUMBER") ?: System.getenv("BUILD_NUMBER") ?: "0")
 
 
@@ -16,25 +21,27 @@ android {
         versionCode = latestGooglePlayBuildNumber + 1
         versionName = "1.0.${latestGooglePlayBuildNumber + 1}"
     }
-      signingConfigs {
-          release {
-              if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
-                  storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
-                  storePassword System.getenv()["CM_KEYSTORE_PASSWORD"]
-                  keyAlias System.getenv()["CM_KEY_ALIAS"]
-                  keyPassword System.getenv()["CM_KEY_PASSWORD"]
-              } else {
-                  keyAlias keystoreProperties['keyAlias']
-                  keyPassword keystoreProperties['keyPassword']
-                  storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-                  storePassword keystoreProperties['storePassword']
-              }
-          }
-      }
+    signingConfigs {
+        create("release") {
+            if (System.getenv()["CI"].toBoolean()) { // CI=true is exported by Codemagic
+                storeFile = file(System.getenv()["CM_KEYSTORE_PATH"])
+                storePassword = System.getenv()["CM_KEYSTORE_PASSWORD"]
+                keyAlias = System.getenv()["CM_KEY_ALIAS"]
+                keyPassword = System.getenv()["CM_KEY_PASSWORD"]
+            } else {
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        }
+    }
     buildTypes {
-     release {
-              signingConfig signingConfigs.release
-          }
+        getByName("release") {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
+        }
+    }
     buildFeatures {
         compose = true
     }
