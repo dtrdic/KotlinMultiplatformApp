@@ -2,11 +2,11 @@ plugins {
     id("com.android.application")
     kotlin("android")
 }
-val keystoreProperties =
-    Properties().apply {
-        var file = File("key.properties")
-        if (file.exists()) load(file.reader())
-    }
+// val keystoreProperties =
+//     Properties().apply {
+//         var file = File("key.properties")
+//         if (file.exists()) load(file.reader())
+//     }
 
 val latestGooglePlayBuildNumber = Integer.valueOf(System.getenv("LATEST_GOOGLE_PLAY_BUILD_NUMBER") ?: System.getenv("BUILD_NUMBER") ?: "0")
 
