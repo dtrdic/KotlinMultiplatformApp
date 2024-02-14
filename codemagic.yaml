@@ -45,7 +45,7 @@ workflows:
         bundle_identifier: io.codemagic.kmmsample.dtrdic
       vars:
         APP_STORE_APPLE_ID: 6477870575
-        XCODE_WORKSPACE: "iosApp/iosApp.xcworkspace"
+        XCODE_WORKSPACE: "iosApp.xcworkspace"
         XCODE_SCHEME: "iosApp"
     scripts:
       - name: Cocoapods installation
