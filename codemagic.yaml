@@ -39,7 +39,8 @@ workflows:
     integrations:
       app_store_connect: DavidAPIkey
     environment:
-      xcode: 15
+      java: 17
+      #xcode: 15
       ios_signing:
         distribution_type: app_store
         bundle_identifier: io.codemagic.kmmsample.dtrdic
