@@ -48,7 +48,7 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
     }
-}
+    }
 
     buildFeatures {
         compose = true
@@ -70,7 +70,7 @@ android {
         jvmTarget = "1.8"
     }
 
-
+}
 dependencies {
     implementation(project(":shared"))
     implementation("androidx.compose.ui:ui:1.4.3")
