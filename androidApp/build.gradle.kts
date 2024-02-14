@@ -17,24 +17,23 @@ android {
         versionName = "1.0.${latestGooglePlayBuildNumber + 1}"
     }
       signingConfigs {
-         create("release") {
-                storeFile = file(System.getenv()["CM_KEYSTORE_PATH"])
-                storePassword = System.getenv()["CM_KEYSTORE_PASSWORD"]
-                keyAlias = System.getenv()["CM_KEY_ALIAS"]
-                keyPassword = System.getenv()["CM_KEY_PASSWORD"]
-
-            //   if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
-            //   } else {
-            //       keyAlias keystoreProperties['keyAlias']
-            //       keyPassword keystoreProperties['keyPassword']
-            //       storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-            //       storePassword keystoreProperties['storePassword']
-            //   }
+          release {
+              if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
+                  storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
+                  storePassword System.getenv()["CM_KEYSTORE_PASSWORD"]
+                  keyAlias System.getenv()["CM_KEY_ALIAS"]
+                  keyPassword System.getenv()["CM_KEY_PASSWORD"]
+              } else {
+                  keyAlias keystoreProperties['keyAlias']
+                  keyPassword keystoreProperties['keyPassword']
+                  storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+                  storePassword keystoreProperties['storePassword']
+              }
           }
       }
     buildTypes {
      release {
-              signingConfig = signingConfigs.getByName("release")
+              signingConfig signingConfigs.release
           }
     buildFeatures {
         compose = true
