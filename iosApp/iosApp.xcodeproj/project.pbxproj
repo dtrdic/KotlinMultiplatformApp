@@ -65,7 +65,6 @@
 				F6D64D494CC8F265F720FA9E /* Pods-iosApp.debug.xcconfig */,
 				A92E321F5680A613CDBBEB8C /* Pods-iosApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -370,7 +369,7 @@
 					"-framework",
 					shared,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.codemagic.kmmsample.dtrdic;
+				PRODUCT_BUNDLE_IDENTIFIER = io.codemagic.dtrdic17;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -401,7 +400,7 @@
 					"-framework",
 					shared,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.codemagic.kmmsample.dtrdic;
+				PRODUCT_BUNDLE_IDENTIFIER = io.codemagic.dtrdic17;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

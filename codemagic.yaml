@@ -43,7 +43,7 @@ workflows:
       #xcode: 15
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: io.codemagic.kmmsample.dtrdic
+        bundle_identifier: io.codemagic.dtrdic17
       vars:
         APP_STORE_APPLE_ID: 6477870575
         XCODE_WORKSPACE: "iosApp.xcworkspace"
