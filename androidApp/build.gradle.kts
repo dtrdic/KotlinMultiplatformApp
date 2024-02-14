@@ -7,7 +7,7 @@ val keystoreProperties =
         var file = File("key.properties")
         if (file.exists()) load(file.reader())
     }
-    
+
 val latestGooglePlayBuildNumber = Integer.valueOf(System.getenv("LATEST_GOOGLE_PLAY_BUILD_NUMBER") ?: System.getenv("BUILD_NUMBER") ?: "0")
 
 
@@ -42,6 +42,8 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
     }
+}
+
     buildFeatures {
         compose = true
     }
@@ -53,7 +55,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    }
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -61,7 +63,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-}
+
 
 dependencies {
     implementation(project(":shared"))
