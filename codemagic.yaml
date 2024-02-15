@@ -39,6 +39,8 @@ workflows:
     integrations:
       app_store_connect: DavidAPIkey
     environment:
+      android_signing:
+        - testKeystore
       java: 17
       #xcode: 15
       ios_signing:
