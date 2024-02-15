@@ -1,5 +1,5 @@
-import java.io.File
-import java.util.*
+// import java.io.File
+// import java.util.*
 
 plugins {
     id("com.android.application")
@@ -39,15 +39,6 @@ android {
             }
         }
     }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("release")
-        }
-    }
-}
-
-
     buildFeatures {
         compose = true
     }
@@ -59,6 +50,12 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
+        }
+    }
     
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -67,7 +64,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    
+}
+
+
+
 dependencies {
     implementation(project(":shared"))
     implementation("androidx.compose.ui:ui:1.4.3")
