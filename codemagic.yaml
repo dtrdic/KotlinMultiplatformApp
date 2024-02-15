@@ -66,7 +66,7 @@ workflows:
         script: | 
           cd $CM_BUILD_DIR/iosApp
           xcode-project build-ipa \
-            --project "$XCODE_PROJECT" \
+            --workspace "$XCODE_WORKSPACE" \
             --scheme "$XCODE_SCHEME" \
             --archive-flags="-destination 'generic/platform=iOS'"
     artifacts:
