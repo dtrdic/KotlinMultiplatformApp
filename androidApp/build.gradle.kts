@@ -1,3 +1,6 @@
+import java.io.File
+import java.util.*
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -23,23 +26,17 @@ android {
     }
     signingConfigs {
         create("release") {
-            System.getenv()["CI"].toBoolean() { // CI=true is exported by Codemagic
+            if (System.getenv()["CI"].toBoolean()) { // CI=true is exported by Codemagic
                 storeFile = file(System.getenv()["CM_KEYSTORE_PATH"])
                 storePassword = System.getenv()["CM_KEYSTORE_PASSWORD"]
                 keyAlias = System.getenv()["CM_KEY_ALIAS"]
                 keyPassword = System.getenv()["CM_KEY_PASSWORD"]
-
-            // if (System.getenv()["CI"].toBoolean()) { // CI=true is exported by Codemagic
-            //     storeFile = file(System.getenv()["CM_KEYSTORE_PATH"])
-            //     storePassword = System.getenv()["CM_KEYSTORE_PASSWORD"]
-            //     keyAlias = System.getenv()["CM_KEY_ALIAS"]
-            //     keyPassword = System.getenv()["CM_KEY_PASSWORD"]
-            // } else {
-            //     storeFile = file(keystoreProperties.getProperty("storeFile"))
-            //     storePassword = keystoreProperties.getProperty("storePassword")
-            //     keyAlias = keystoreProperties.getProperty("keyAlias")
-            //     keyPassword = keystoreProperties.getProperty("keyPassword")
-            // }
+            } else {
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
         }
     }
     buildTypes {
@@ -48,7 +45,8 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
     }
-    }
+}
+
 
     buildFeatures {
         compose = true
@@ -69,8 +67,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-}
+    
 dependencies {
     implementation(project(":shared"))
     implementation("androidx.compose.ui:ui:1.4.3")
