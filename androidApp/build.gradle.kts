@@ -1,15 +1,17 @@
-// import java.io.File
-// import java.util.*
+import java.io.File
+import java.util.*
+
+val keystoreProperties =
+        Properties().apply {
+            var file = File("androidApp/key.properties")
+            if (file.exists()) load(file.reader())
+        }
 
 plugins {
     id("com.android.application")
     kotlin("android")
 }
-// val keystoreProperties =
-//     Properties().apply {
-//         var file = File("key.properties")
-//         if (file.exists()) load(file.reader())
-//     }
+
 
 val latestGooglePlayBuildNumber = Integer.valueOf(System.getenv("LATEST_GOOGLE_PLAY_BUILD_NUMBER") ?: System.getenv("BUILD_NUMBER") ?: "0")
 
@@ -26,19 +28,17 @@ android {
     }
     signingConfigs {
         create("release") {
-                System.getenv()["CI"].toBoolean(){ // CI=true is exported by Codemagic
+            if (System.getenv()["CI"].toBoolean()) { // CI=true is exported by Codemagic
                 storeFile = file(System.getenv()["CM_KEYSTORE_PATH"])
                 storePassword = System.getenv()["CM_KEYSTORE_PASSWORD"]
                 keyAlias = System.getenv()["CM_KEY_ALIAS"]
-                keyPassword = System.getenv()["CM_KEY_PASSWORD"]}
-
-            // if (System.getenv()["CI"].toBoolean()) { // CI=true is exported by Codemagic
-            // } else {
-            //     storeFile = file(keystoreProperties.getProperty("storeFile"))
-            //     storePassword = keystoreProperties.getProperty("storePassword")
-            //     keyAlias = keystoreProperties.getProperty("keyAlias")
-            //     keyPassword = keystoreProperties.getProperty("keyPassword")
-            // }
+                keyPassword = System.getenv()["CM_KEY_PASSWORD"]
+            } else {
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
         }
     }
     buildFeatures {
