@@ -73,6 +73,7 @@ workflows:
             --archive-flags="-destination 'generic/platform=iOS'"
     artifacts:
       - iosApp/build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/iosApp.log
     publishing:
       email:
         recipients:
