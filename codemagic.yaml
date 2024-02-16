@@ -39,10 +39,10 @@ workflows:
     integrations:
       app_store_connect: DavidAPIkey
     environment:
+      xcode: 15
       android_signing:
         - testKeystore
       java: 17
-      xcode: 14.3.1
       ios_signing:
         distribution_type: app_store
         bundle_identifier: io.codemagic.dtrdic17
