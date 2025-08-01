@@ -104,6 +104,7 @@ workflows:
       #       --archive-flags="-destination 'generic/platform=iOS'"
         - name: Build with Generic Destination
           script: |
+            cd $CM_BUILD_DIR/iosApp
             xcodebuild build \
               -project "$XCODE_PROJECT" \
               -scheme "$XCODE_SCHEME" \
