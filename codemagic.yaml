@@ -88,9 +88,9 @@ workflows:
       name: Build for simulator
       environment:
         xcode: 16.4
-    
+        android_signing:
+          - testKeystore
         vars:
-          APP_STORE_APPLE_ID: 6477873359
           XCODE_WORKSPACE: "iosApp.xcworkspace"
           XCODE_PROJECT: "iosApp.xcodeproj"
           XCODE_SCHEME: "iosApp"
