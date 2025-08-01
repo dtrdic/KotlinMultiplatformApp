@@ -58,7 +58,7 @@ workflows:
           pod install
       - name: Set up code signing settings on Xcode project
         script: | 
-          xcode-project use-profiles
+          xcode-project use-profiles --project iosApp/*.xcodeproj
       - name: Increment build number
         script: | 
           cd $CM_BUILD_DIR/iosApp
