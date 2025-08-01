@@ -95,13 +95,10 @@ workflows:
           XCODE_PROJECT: "iosApp.xcodeproj"
           XCODE_SCHEME: "iosApp"
       scripts:
-      # - name: Build ipa for distribution
-      #   script: | 
-      #     cd $CM_BUILD_DIR/iosApp
-      #     xcode-project build-ipa \
-      #       --workspace "$XCODE_WORKSPACE" \
-      #       --scheme "$XCODE_SCHEME" \
-      #       --archive-flags="-destination 'generic/platform=iOS'"
+        - name: Cocoapods installation
+          script: | 
+            cd $CM_BUILD_DIR/iosApp
+            pod install
         - name: Build with Generic Destination
           script: |
             cd $CM_BUILD_DIR/iosApp
