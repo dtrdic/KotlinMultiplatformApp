@@ -95,10 +95,10 @@ workflows:
           XCODE_PROJECT: "iosApp.xcodeproj"
           XCODE_SCHEME: "iosApp"
       scripts:
-        # - name: /gradlew :shared:podspec
-        #   script: | 
-        #     ./gradlew :shared:podspec
-        #     ./gradlew :shared:generateDummyFramework
+        - name: /gradlew :shared:podspec
+          script: | 
+            ./gradlew :shared:podspec
+            ./gradlew :shared:generateDummyFramework
         - name: Cocoapods installation
           script: | 
           
