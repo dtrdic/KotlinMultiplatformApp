@@ -98,9 +98,10 @@ workflows:
         - name: /gradlew :shared:podspec
           script: | 
             ./gradlew :shared:podspec
+            ./gradlew :shared:generateDummyFramework
         - name: Cocoapods installation
           script: | 
-            ./gradlew :shared:podspec
+          
 
             cd $CM_BUILD_DIR/iosApp
             pod install
