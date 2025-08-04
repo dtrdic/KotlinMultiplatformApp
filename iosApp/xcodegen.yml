@@ -1,0 +1,8 @@
+name: iosApp
+targets:
+  iosApp:
+    type: application
+    platform: iOS
+    sources: ["."]
+    dependencies:
+      - sdk: UIKit.framework
