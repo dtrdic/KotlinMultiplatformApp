@@ -15,6 +15,16 @@ kotlin {
             }
         }
     }
+
+    cocoapods {
+    summary = "Shared module for iOS"
+    homepage = "https://your-homepage.com"
+    ios.deploymentTarget = "13.0"
+    version = "1.16.2" 
+    framework {
+        baseName = "shared"
+    }
+}
     
     listOf(
         iosX64(),
