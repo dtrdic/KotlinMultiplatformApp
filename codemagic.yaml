@@ -95,8 +95,13 @@ workflows:
           XCODE_PROJECT: "iosApp.xcodeproj"
           XCODE_SCHEME: "iosApp"
       scripts:
+        - name: /gradlew :shared:podspec
+          script: | 
+            ./gradlew :shared:podspec
         - name: Cocoapods installation
           script: | 
+            ./gradlew :shared:podspec
+
             cd $CM_BUILD_DIR/iosApp
             pod install
         - name: Build with Generic Destination
