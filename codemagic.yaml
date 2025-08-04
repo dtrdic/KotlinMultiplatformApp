@@ -97,6 +97,8 @@ workflows:
       scripts:
         - name: /gradlew :shared:podspec
           script: | 
+            chmod +x gradlew
+            cd shared
             ./gradlew :shared:podspec
             ./gradlew :shared:generateDummyFramework
         - name: Cocoapods installation
