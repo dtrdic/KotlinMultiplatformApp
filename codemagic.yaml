@@ -97,14 +97,17 @@ workflows:
       scripts:
         - name: /gradlew :shared:podspec
           script: | 
-            chmod +x gradlew
-            cd shared
+
             ./gradlew :shared:podspec
             ./gradlew :shared:generateDummyFramework
-        - name: Cocoapods installation
-          script: | 
-            cd $CM_BUILD_DIR/iosApp
-            pod install
+        # - name: Cocoapods installation
+        #   script: | 
+        #     cd $CM_BUILD_DIR/iosApp
+        #     pod install
+        - name: Generate Xcode project
+          script: |
+             cd $CM_BUILD_DIR/iosApp
+             xcodegen generate --spec xcodegen.yml
         - name: Build with Generic Destination
           script: |
             cd $CM_BUILD_DIR/iosApp
