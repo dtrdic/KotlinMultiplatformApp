@@ -54,7 +54,10 @@ workflows:
     scripts:
       - name: Set up code signing settings on Xcode project
         script: | 
-          xcode-project use-profiles 
+         cd $CM_BUILD_DIR/iosApp
+            xcode-project use-profiles \
+            --project "$XCODE_PROJECT" \
+            --custom-export-options='{"testFlightInternalTestingOnly": true}'
       - name: Cocoapods installation
         script: | 
           cd $CM_BUILD_DIR/iosApp
