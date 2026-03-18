@@ -1,6 +1,4 @@
-include "Pods/Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"
-
-TEAM_ID=X8NNQ9CYL2
+TEAM_ID=
 
 PRODUCT_NAME=KMM_APP_TEST
 PRODUCT_BUNDLE_IDENTIFIER=io.codemagic.dtrdic17
