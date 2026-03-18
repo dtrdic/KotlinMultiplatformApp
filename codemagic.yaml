@@ -35,14 +35,14 @@ workflows:
   ios-workflow:
     name: KMM iOS Workflow
     max_build_duration: 120
-    instance_type: mac_mini_m1
+    instance_type: mac_mini_m2
+    triggering:
+          events:
+            - push
     integrations:
       app_store_connect: DavidAPIkey
     environment:
-      xcode: 15
-      android_signing:
-        - testKeystore
-      java: 17
+
       ios_signing:
         distribution_type: app_store
         bundle_identifier: io.codemagic.dtrdic17
@@ -52,13 +52,13 @@ workflows:
         XCODE_PROJECT: "iosApp.xcodeproj"
         XCODE_SCHEME: "iosApp"
     scripts:
+      - name: Set up code signing settings on Xcode project
+        script: | 
+          xcode-project use-profiles --project iosApp/*.xcodeproj
       - name: Cocoapods installation
         script: | 
           cd $CM_BUILD_DIR/iosApp
           pod install
-      - name: Set up code signing settings on Xcode project
-        script: | 
-          xcode-project use-profiles --project iosApp/*.xcodeproj
       - name: Increment build number
         script: | 
           cd $CM_BUILD_DIR/iosApp
